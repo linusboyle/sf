@@ -1,0 +1,463 @@
+DIGEST e5be16bb661a90bebc21c5d30a8a3f8c
+FPLF.Types
+R649:659 Coq.Arith.Arith <> <> lib
+R686:689 PLF.Maps <> <> lib
+R716:718 PLF.Imp <> <> lib
+R745:753 PLF.Smallstep <> <> lib
+R775:779 PLF.Types <> multi ind
+ind 1734:1735 <> tm
+constr 1751:1753 <> tru
+constr 1764:1766 <> fls
+constr 1777:1780 <> test
+constr 1809:1811 <> zro
+constr 1822:1824 <> scc
+constr 1841:1843 <> prd
+constr 1860:1864 <> iszro
+R1757:1758 PLF.Types <> tm ind
+R1770:1771 PLF.Types <> tm ind
+R1786:1789 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1792:1795 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1798:1801 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1802:1803 PLF.Types <> tm ind
+R1796:1797 PLF.Types <> tm ind
+R1790:1791 PLF.Types <> tm ind
+R1784:1785 PLF.Types <> tm ind
+R1815:1816 PLF.Types <> tm ind
+R1830:1833 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1834:1835 PLF.Types <> tm ind
+R1828:1829 PLF.Types <> tm ind
+R1849:1852 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1853:1854 PLF.Types <> tm ind
+R1847:1848 PLF.Types <> tm ind
+R1870:1873 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1874:1875 PLF.Types <> tm ind
+R1868:1869 PLF.Types <> tm ind
+ind 1946:1951 <> bvalue
+constr 1973:1978 <> bv_tru
+constr 1997:2002 <> bv_fls
+R1957:1960 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1955:1956 PLF.Types <> tm ind
+R1982:1987 PLF.Types <> bvalue ind
+R1989:1991 PLF.Types <> tru constr
+R2006:2011 PLF.Types <> bvalue ind
+R2013:2015 PLF.Types <> fls constr
+ind 2029:2034 <> nvalue
+constr 2056:2061 <> nv_zro
+constr 2080:2085 <> nv_scc
+R2040:2043 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2038:2039 PLF.Types <> tm ind
+R2065:2070 PLF.Types <> nvalue ind
+R2072:2074 PLF.Types <> zro constr
+R2107:2110 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2111:2116 PLF.Types <> nvalue ind
+R2119:2121 PLF.Types <> scc constr
+R2123:2123 PLF.Types <> t var
+R2099:2104 PLF.Types <> nvalue ind
+R2106:2106 PLF.Types <> t var
+def 2139:2143 <> value
+R2150:2151 PLF.Types <> tm ind
+R2165:2168 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R2157:2162 PLF.Types <> bvalue ind
+R2164:2164 PLF.Types <> t var
+R2169:2174 PLF.Types <> nvalue ind
+R2176:2176 PLF.Types <> t var
+R2198:2203 PLF.Types <> bvalue ind
+R2205:2210 PLF.Types <> nvalue ind
+R2225:2229 PLF.Types <> value def
+R2244:2249 PLF.Maps <> update def
+ind 4053:4056 <> step
+constr 4084:4093 <> ST_TestTru
+constr 4145:4154 <> ST_TestFls
+constr 4206:4212 <> ST_Test
+constr 4304:4309 <> ST_Scc
+constr 4381:4389 <> ST_PrdZro
+constr 4421:4429 <> ST_PrdScc
+constr 4495:4500 <> ST_Prd
+constr 4572:4582 <> ST_IszroZro
+constr 4616:4626 <> ST_IszroScc
+constr 4696:4703 <> ST_Iszro
+R4062:4065 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4068:4071 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4066:4067 PLF.Types <> tm ind
+R4060:4061 PLF.Types <> tm ind
+R4800:4803 PLF.Types <> step ind
+R4117:4117 PLF.Types <> :::x_'-->'_x not
+R4132:4137 PLF.Types <> :::x_'-->'_x not
+R4118:4121 PLF.Types <> test constr
+R4130:4131 PLF.Types <> t2 var
+R4127:4128 PLF.Types <> t1 var
+R4123:4125 PLF.Types <> tru constr
+R4138:4139 PLF.Types <> t1 var
+R4178:4178 PLF.Types <> :::x_'-->'_x not
+R4193:4198 PLF.Types <> :::x_'-->'_x not
+R4179:4182 PLF.Types <> test constr
+R4191:4192 PLF.Types <> t2 var
+R4188:4189 PLF.Types <> t1 var
+R4184:4186 PLF.Types <> fls constr
+R4199:4200 PLF.Types <> t2 var
+R4253:4262 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4263:4263 PLF.Types <> :::x_'-->'_x not
+R4277:4283 PLF.Types <> :::x_'-->'_x not
+R4298:4298 PLF.Types <> :::x_'-->'_x not
+R4264:4267 PLF.Types <> test constr
+R4275:4276 PLF.Types <> t3 var
+R4272:4273 PLF.Types <> t2 var
+R4269:4270 PLF.Types <> t1 var
+R4284:4287 PLF.Types <> test constr
+R4296:4297 PLF.Types <> t3 var
+R4293:4294 PLF.Types <> t2 var
+R4289:4291 PLF.Types <> t1' var
+R4245:4249 PLF.Types <> :::x_'-->'_x not
+R4243:4244 PLF.Types <> t1 var
+R4250:4252 PLF.Types <> t1' var
+R4344:4353 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4354:4354 PLF.Types <> :::x_'-->'_x not
+R4361:4367 PLF.Types <> :::x_'-->'_x not
+R4375:4375 PLF.Types <> :::x_'-->'_x not
+R4355:4357 PLF.Types <> scc constr
+R4359:4360 PLF.Types <> t1 var
+R4368:4370 PLF.Types <> scc constr
+R4372:4374 PLF.Types <> t1' var
+R4336:4340 PLF.Types <> :::x_'-->'_x not
+R4334:4335 PLF.Types <> t1 var
+R4341:4343 PLF.Types <> t1' var
+R4399:4399 PLF.Types <> :::x_'-->'_x not
+R4407:4412 PLF.Types <> :::x_'-->'_x not
+R4400:4402 PLF.Types <> prd constr
+R4404:4406 PLF.Types <> zro constr
+R4413:4415 PLF.Types <> zro constr
+R4459:4468 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4469:4469 PLF.Types <> :::x_'-->'_x not
+R4482:4487 PLF.Types <> :::x_'-->'_x not
+R4470:4472 PLF.Types <> prd constr
+R4475:4477 PLF.Types <> scc constr
+R4479:4480 PLF.Types <> t1 var
+R4488:4489 PLF.Types <> t1 var
+R4450:4455 PLF.Types <> nvalue ind
+R4457:4458 PLF.Types <> t1 var
+R4535:4544 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4545:4545 PLF.Types <> :::x_'-->'_x not
+R4552:4558 PLF.Types <> :::x_'-->'_x not
+R4566:4566 PLF.Types <> :::x_'-->'_x not
+R4546:4548 PLF.Types <> prd constr
+R4550:4551 PLF.Types <> t1 var
+R4559:4561 PLF.Types <> prd constr
+R4563:4565 PLF.Types <> t1' var
+R4527:4531 PLF.Types <> :::x_'-->'_x not
+R4525:4526 PLF.Types <> t1 var
+R4532:4534 PLF.Types <> t1' var
+R4592:4592 PLF.Types <> :::x_'-->'_x not
+R4602:4607 PLF.Types <> :::x_'-->'_x not
+R4593:4597 PLF.Types <> iszro constr
+R4599:4601 PLF.Types <> zro constr
+R4608:4610 PLF.Types <> tru constr
+R4657:4666 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4667:4667 PLF.Types <> :::x_'-->'_x not
+R4682:4687 PLF.Types <> :::x_'-->'_x not
+R4668:4672 PLF.Types <> iszro constr
+R4675:4677 PLF.Types <> scc constr
+R4679:4680 PLF.Types <> t1 var
+R4688:4690 PLF.Types <> fls constr
+R4648:4653 PLF.Types <> nvalue ind
+R4655:4656 PLF.Types <> t1 var
+R4738:4747 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4748:4748 PLF.Types <> :::x_'-->'_x not
+R4757:4763 PLF.Types <> :::x_'-->'_x not
+R4773:4773 PLF.Types <> :::x_'-->'_x not
+R4749:4753 PLF.Types <> iszro constr
+R4755:4756 PLF.Types <> t1 var
+R4764:4768 PLF.Types <> iszro constr
+R4770:4772 PLF.Types <> t1' var
+R4730:4734 PLF.Types <> :::x_'-->'_x not
+R4728:4729 PLF.Types <> t1 var
+R4735:4737 PLF.Types <> t1' var
+R4800:4803 PLF.Types <> step ind
+not 4782:4782 <> :::x_'-->'_x
+R4832:4835 PLF.Types <> step ind
+syndef 5765:5780 <> step_normal_form
+R5786:5796 PLF.Smallstep <> normal_form def
+R5798:5801 PLF.Types <> step ind
+def 5817:5821 <> stuck
+R5828:5829 PLF.Types <> tm ind
+R5862:5865 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R5844:5859 PLF.Types <> step_normal_form syndef
+R5861:5861 PLF.Types <> t var
+R5866:5867 Coq.Init.Logic <> ::type_scope:'~'_x not
+R5868:5872 PLF.Types <> value def
+R5874:5874 PLF.Types <> t var
+R5890:5894 PLF.Types <> stuck def
+def 5968:5985 <> some_term_is_stuck
+R5991:5997 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R5999:6000 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R6001:6005 PLF.Types <> stuck def
+R6007:6007 PLF.Types <> t var
+prf 6395:6405 <> value_is_nf
+R6428:6431 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6432:6447 PLF.Types <> step_normal_form syndef
+R6449:6449 PLF.Types <> t var
+R6421:6425 PLF.Types <> value def
+R6427:6427 PLF.Types <> t var
+prf 7125:7142 <> step_deterministic
+R7147:7159 PLF.Smallstep <> deterministic def
+R7161:7164 PLF.Types <> step ind
+ind 7706:7707 <> ty
+constr 7723:7726 <> Bool
+constr 7737:7739 <> Nat
+R7730:7731 PLF.Types <> ty ind
+R7743:7744 PLF.Types <> ty ind
+ind 9183:9190 <> has_type
+constr 9218:9222 <> T_Tru
+constr 9253:9257 <> T_Fls
+constr 9288:9293 <> T_Test
+constr 9419:9423 <> T_Zro
+constr 9453:9457 <> T_Scc
+constr 9525:9529 <> T_Prd
+constr 9597:9603 <> T_Iszro
+R9196:9199 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9202:9205 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9200:9201 PLF.Types <> ty ind
+R9194:9195 PLF.Types <> tm ind
+R9698:9705 PLF.Types <> has_type ind
+R9233:9235 PLF.Types <> :::'|-'_x_'\in'_x not
+R9239:9243 PLF.Types <> :::'|-'_x_'\in'_x not
+R9236:9238 PLF.Types <> tru constr
+R9244:9247 PLF.Types <> Bool constr
+R9268:9270 PLF.Types <> :::'|-'_x_'\in'_x not
+R9274:9278 PLF.Types <> :::'|-'_x_'\in'_x not
+R9271:9273 PLF.Types <> fls constr
+R9279:9282 PLF.Types <> Bool constr
+R9337:9347 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9359:9369 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9381:9391 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9392:9394 PLF.Types <> :::'|-'_x_'\in'_x not
+R9408:9412 PLF.Types <> :::'|-'_x_'\in'_x not
+R9395:9398 PLF.Types <> test constr
+R9406:9407 PLF.Types <> t3 var
+R9403:9404 PLF.Types <> t2 var
+R9400:9401 PLF.Types <> t1 var
+R9413:9413 PLF.Types <> T var
+R9370:9372 PLF.Types <> :::'|-'_x_'\in'_x not
+R9375:9379 PLF.Types <> :::'|-'_x_'\in'_x not
+R9373:9374 PLF.Types <> t3 var
+R9380:9380 PLF.Types <> T var
+R9348:9350 PLF.Types <> :::'|-'_x_'\in'_x not
+R9353:9357 PLF.Types <> :::'|-'_x_'\in'_x not
+R9351:9352 PLF.Types <> t2 var
+R9358:9358 PLF.Types <> T var
+R9323:9325 PLF.Types <> :::'|-'_x_'\in'_x not
+R9328:9332 PLF.Types <> :::'|-'_x_'\in'_x not
+R9326:9327 PLF.Types <> t1 var
+R9333:9336 PLF.Types <> Bool constr
+R9434:9436 PLF.Types <> :::'|-'_x_'\in'_x not
+R9440:9444 PLF.Types <> :::'|-'_x_'\in'_x not
+R9437:9439 PLF.Types <> zro constr
+R9445:9447 PLF.Types <> Nat constr
+R9492:9502 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9503:9505 PLF.Types <> :::'|-'_x_'\in'_x not
+R9512:9516 PLF.Types <> :::'|-'_x_'\in'_x not
+R9506:9508 PLF.Types <> scc constr
+R9510:9511 PLF.Types <> t1 var
+R9517:9519 PLF.Types <> Nat constr
+R9479:9481 PLF.Types <> :::'|-'_x_'\in'_x not
+R9484:9488 PLF.Types <> :::'|-'_x_'\in'_x not
+R9482:9483 PLF.Types <> t1 var
+R9489:9491 PLF.Types <> Nat constr
+R9564:9574 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9575:9577 PLF.Types <> :::'|-'_x_'\in'_x not
+R9584:9588 PLF.Types <> :::'|-'_x_'\in'_x not
+R9578:9580 PLF.Types <> prd constr
+R9582:9583 PLF.Types <> t1 var
+R9589:9591 PLF.Types <> Nat constr
+R9551:9553 PLF.Types <> :::'|-'_x_'\in'_x not
+R9556:9560 PLF.Types <> :::'|-'_x_'\in'_x not
+R9554:9555 PLF.Types <> t1 var
+R9561:9563 PLF.Types <> Nat constr
+R9638:9648 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9649:9651 PLF.Types <> :::'|-'_x_'\in'_x not
+R9660:9664 PLF.Types <> :::'|-'_x_'\in'_x not
+R9652:9656 PLF.Types <> iszro constr
+R9658:9659 PLF.Types <> t1 var
+R9665:9668 PLF.Types <> Bool constr
+R9625:9627 PLF.Types <> :::'|-'_x_'\in'_x not
+R9630:9634 PLF.Types <> :::'|-'_x_'\in'_x not
+R9628:9629 PLF.Types <> t1 var
+R9635:9637 PLF.Types <> Nat constr
+R9698:9705 PLF.Types <> has_type ind
+not 9677:9677 <> :::'|-'_x_'\in'_x
+R9732:9739 PLF.Types <> has_type ind
+def 9751:9760 <> has_type_1
+R9766:9768 PLF.Types <> :::'|-'_x_'\in'_x not
+R9791:9795 PLF.Types <> :::'|-'_x_'\in'_x not
+R9769:9772 PLF.Types <> test constr
+R9783:9785 PLF.Types <> scc constr
+R9787:9789 PLF.Types <> zro constr
+R9778:9780 PLF.Types <> zro constr
+R9774:9776 PLF.Types <> fls constr
+R9796:9798 PLF.Types <> Nat constr
+R9816:9821 PLF.Types <> T_Test constr
+R9816:9821 PLF.Types <> T_Test constr
+R9836:9840 PLF.Types <> T_Fls constr
+R9836:9840 PLF.Types <> T_Fls constr
+R9855:9859 PLF.Types <> T_Zro constr
+R9855:9859 PLF.Types <> T_Zro constr
+R9874:9878 PLF.Types <> T_Scc constr
+R9874:9878 PLF.Types <> T_Scc constr
+R9896:9900 PLF.Types <> T_Zro constr
+R9896:9900 PLF.Types <> T_Zro constr
+def 10332:10343 <> has_type_not
+R10349:10352 Coq.Init.Logic <> ::type_scope:'~'_x not
+R10381:10382 Coq.Init.Logic <> ::type_scope:'~'_x not
+R10353:10355 PLF.Types <> :::'|-'_x_'\in'_x not
+R10372:10376 PLF.Types <> :::'|-'_x_'\in'_x not
+R10356:10359 PLF.Types <> test constr
+R10369:10371 PLF.Types <> tru constr
+R10365:10367 PLF.Types <> zro constr
+R10361:10363 PLF.Types <> fls constr
+R10377:10380 PLF.Types <> Bool constr
+def 10525:10552 <> scc_hastype_nat__hastype_nat
+R10584:10589 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10590:10592 PLF.Types <> :::'|-'_x_'\in'_x not
+R10594:10598 PLF.Types <> :::'|-'_x_'\in'_x not
+R10593:10593 PLF.Types <> t var
+R10599:10601 PLF.Types <> Nat constr
+R10568:10570 PLF.Types <> :::'|-'_x_'\in'_x not
+R10576:10580 PLF.Types <> :::'|-'_x_'\in'_x not
+R10571:10573 PLF.Types <> scc constr
+R10575:10575 PLF.Types <> t var
+R10581:10583 PLF.Types <> Nat constr
+prf 10916:10929 <> bool_canonical
+R10958:10961 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10969:10972 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10973:10978 PLF.Types <> bvalue ind
+R10980:10980 PLF.Types <> t var
+R10962:10966 PLF.Types <> value def
+R10968:10968 PLF.Types <> t var
+R10945:10947 PLF.Types <> :::'|-'_x_'\in'_x not
+R10949:10953 PLF.Types <> :::'|-'_x_'\in'_x not
+R10948:10948 PLF.Types <> t var
+R10954:10957 PLF.Types <> Bool constr
+prf 11081:11093 <> nat_canonical
+R11121:11124 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11132:11135 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11136:11141 PLF.Types <> nvalue ind
+R11143:11143 PLF.Types <> t var
+R11125:11129 PLF.Types <> value def
+R11131:11131 PLF.Types <> t var
+R11109:11111 PLF.Types <> :::'|-'_x_'\in'_x not
+R11113:11117 PLF.Types <> :::'|-'_x_'\in'_x not
+R11112:11112 PLF.Types <> t var
+R11118:11120 PLF.Types <> Nat constr
+prf 11656:11663 <> progress
+R11691:11696 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11704:11707 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R11697:11701 PLF.Types <> value def
+R11703:11703 PLF.Types <> t var
+R11708:11714 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R11717:11718 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R11720:11724 PLF.Types <> :::x_'-->'_x not
+R11719:11719 PLF.Types <> t var
+R11725:11726 PLF.Types <> t' var
+R11681:11683 PLF.Types <> :::'|-'_x_'\in'_x not
+R11685:11689 PLF.Types <> :::'|-'_x_'\in'_x not
+R11684:11684 PLF.Types <> t var
+R11690:11690 PLF.Types <> T var
+R12210:12223 PLF.Types <> bool_canonical thm
+R12210:12223 PLF.Types <> bool_canonical thm
+R12386:12389 PLF.Types <> test constr
+R12386:12389 PLF.Types <> test constr
+def 13517:13557 <> manual_grade_for_finish_progress_informal
+R13561:13566 Coq.Init.Datatypes <> option ind
+R13572:13572 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R13569:13571 Coq.Init.Datatypes <> nat ind
+R13573:13578 Coq.Strings.String <> string ind
+R13584:13587 Coq.Init.Datatypes <> None constr
+prf 14128:14139 <> preservation
+R14170:14175 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14184:14189 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14190:14192 PLF.Types <> :::'|-'_x_'\in'_x not
+R14195:14199 PLF.Types <> :::'|-'_x_'\in'_x not
+R14193:14194 PLF.Types <> t' var
+R14200:14200 PLF.Types <> T var
+R14177:14181 PLF.Types <> :::x_'-->'_x not
+R14176:14176 PLF.Types <> t var
+R14182:14183 PLF.Types <> t' var
+R14160:14162 PLF.Types <> :::'|-'_x_'\in'_x not
+R14164:14168 PLF.Types <> :::'|-'_x_'\in'_x not
+R14163:14163 PLF.Types <> t var
+R14169:14169 PLF.Types <> T var
+R14811:14816 PLF.Types <> T_Test constr
+R14811:14816 PLF.Types <> T_Test constr
+def 16151:16195 <> manual_grade_for_finish_preservation_informal
+R16199:16204 Coq.Init.Datatypes <> option ind
+R16210:16210 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R16207:16209 Coq.Init.Datatypes <> nat ind
+R16211:16216 Coq.Strings.String <> string ind
+R16222:16225 Coq.Init.Datatypes <> None constr
+prf 16664:16676 <> preservation'
+R16707:16712 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16721:16726 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16727:16729 PLF.Types <> :::'|-'_x_'\in'_x not
+R16732:16736 PLF.Types <> :::'|-'_x_'\in'_x not
+R16730:16731 PLF.Types <> t' var
+R16737:16737 PLF.Types <> T var
+R16714:16718 PLF.Types <> :::x_'-->'_x not
+R16713:16713 PLF.Types <> t var
+R16719:16720 PLF.Types <> t' var
+R16697:16699 PLF.Types <> :::'|-'_x_'\in'_x not
+R16701:16705 PLF.Types <> :::'|-'_x_'\in'_x not
+R16700:16700 PLF.Types <> t var
+R16706:16706 PLF.Types <> T var
+def 17334:17342 <> multistep
+R17348:17352 PLF.Smallstep <> multi ind
+R17354:17357 PLF.Types <> step ind
+R17389:17397 PLF.Types <> multistep def
+not 17370:17370 <> :::x_'-->*'_x
+prf 17432:17440 <> soundness
+R17471:17476 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17486:17491 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17492:17493 Coq.Init.Logic <> ::type_scope:'~'_x not
+R17502:17502 Coq.Init.Logic <> ::type_scope:'~'_x not
+R17494:17498 PLF.Types <> stuck def
+R17500:17501 PLF.Types <> t' var
+R17478:17483 PLF.Types <> :::x_'-->*'_x not
+R17477:17477 PLF.Types <> t var
+R17484:17485 PLF.Types <> t' var
+R17461:17463 PLF.Types <> :::'|-'_x_'\in'_x not
+R17465:17469 PLF.Types <> :::'|-'_x_'\in'_x not
+R17464:17464 PLF.Types <> t var
+R17470:17470 PLF.Types <> T var
+R17573:17580 PLF.Types <> progress prfax
+R17573:17580 PLF.Types <> progress prfax
+R17618:17629 PLF.Types <> preservation prfax
+R17618:17629 PLF.Types <> preservation prfax
+R17653:17657 PLF.Types <> stuck def
+def 18311:18344 <> manual_grade_for_subject_expansion
+R18348:18353 Coq.Init.Datatypes <> option ind
+R18359:18359 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R18356:18358 Coq.Init.Datatypes <> nat ind
+R18360:18365 Coq.Strings.String <> string ind
+R18371:18374 Coq.Init.Datatypes <> None constr
+def 19015:19041 <> manual_grade_for_variation1
+R19045:19050 Coq.Init.Datatypes <> option ind
+R19056:19056 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R19053:19055 Coq.Init.Datatypes <> nat ind
+R19057:19062 Coq.Strings.String <> string ind
+R19068:19071 Coq.Init.Datatypes <> None constr
+def 19494:19520 <> manual_grade_for_variation2
+R19524:19529 Coq.Init.Datatypes <> option ind
+R19535:19535 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R19532:19534 Coq.Init.Datatypes <> nat ind
+R19536:19541 Coq.Strings.String <> string ind
+R19547:19550 Coq.Init.Datatypes <> None constr
+def 21727:21757 <> manual_grade_for_remove_predzro
+R21761:21766 Coq.Init.Datatypes <> option ind
+R21772:21772 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R21769:21771 Coq.Init.Datatypes <> nat ind
+R21773:21778 Coq.Strings.String <> string ind
+R21784:21787 Coq.Init.Datatypes <> None constr
+def 22317:22350 <> manual_grade_for_prog_pres_bigstep
+R22354:22359 Coq.Init.Datatypes <> option ind
+R22365:22365 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R22362:22364 Coq.Init.Datatypes <> nat ind
+R22366:22371 Coq.Strings.String <> string ind
+R22377:22380 Coq.Init.Datatypes <> None constr

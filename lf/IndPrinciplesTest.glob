@@ -1,0 +1,15 @@
+DIGEST fb15a068be1f9a05a3bd9d8575358b89
+FLF.IndPrinciplesTest
+R70:75 Coq.Strings.String <> <> lib
+R101:113 LF.IndPrinciples <> <> lib
+ax 127:133 <> MISSING
+mod 150:154 <> Check
+R220:226 LF.IndPrinciplesTest <> MISSING defax
+R220:226 LF.IndPrinciplesTest <> MISSING defax
+R419:422 Coq.Init.Datatypes <> Some constr
+R419:422 Coq.Init.Datatypes <> Some constr
+R602:605 Coq.Init.Datatypes <> None constr
+R602:605 Coq.Init.Datatypes <> None constr
+R687:691 LF.IndPrinciplesTest Check <> mod
+R718:730 LF.IndPrinciples <> <> lib
+R753:756 Coq.Init.Logic <> True ind
