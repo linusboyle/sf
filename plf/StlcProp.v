@@ -41,6 +41,7 @@ Proof.
   exists x0, t0.  auto.
 Qed.
 
+Print has_type.
 (* ################################################################# *)
 (** * Progress *)
 
@@ -141,7 +142,31 @@ Theorem progress' : forall t T,
 Proof.
   intros t.
   induction t; intros T Ht; auto.
-  (* FILL IN HERE *) Admitted.
+  - (* var *)
+    inversion Ht;subst;inversion H1.
+  - (* app *)
+    inversion Ht;subst;clear Ht.
+    right.
+    apply IHt1 in H2 as P.
+    apply IHt2 in H4 as Q.
+    destruct P.
+    + destruct Q.
+      * assert (exists x0 t0, t1 = abs x0 T11 t0). 
+        eapply canonical_forms_fun; eauto.
+        destruct H1 as [x0 [t0 Heq]]. subst.
+        exists ([x0:=t2]t0);auto.
+      * destruct H0 as [t' Ht].
+        exists (app t1 t');auto.
+    + destruct H as [t' Ht].
+      exists (app t' t2);auto.
+  - (* test *)
+    inversion Ht;subst;clear Ht.
+    right.
+    apply IHt1 in H3 as P. destruct P.
+    + destruct (canonical_forms_bool t1);subst;eauto. 
+    + destruct H as [t' He].
+      exists (test t' t2 t3);auto.
+Qed.
 (** [] *)
 
 (* ################################################################# *)
@@ -315,7 +340,11 @@ Corollary typable_empty__closed : forall t T,
     empty |- t \in T  ->
     closed t.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  unfold closed.
+  intros t T HType x Hfree.
+  destruct (free_in_context x t T empty Hfree HType) as [x0 T'].
+  inversion T'.
+Qed.
 (** [] *)
 
 (** Sometimes, when we have a proof of some typing relation
@@ -388,6 +417,8 @@ Proof with eauto.
   - (* T_App *)
     apply T_App with T11...
 Qed.
+
+Print has_type.
 
 (** Now we come to the conceptual heart of the proof that reduction
     preserves types -- namely, the observation that _substitution_
@@ -624,7 +655,9 @@ Proof.
   intros t t' T Hhas_type Hmulti. unfold stuck.
   intros [Hnf Hnot_val]. unfold normal_form in Hnf.
   induction Hmulti.
-  (* FILL IN HERE *) Admitted.
+  - destruct (progress x0 T Hhas_type) as [Hv |Hstep];auto.
+  - apply preservation with (t':=y0) in Hhas_type;auto.
+Qed.
 (** [] *)
 
 (* ################################################################# *)
@@ -640,7 +673,22 @@ Theorem unique_types : forall Gamma e T T',
   Gamma |- e \in T' ->
   T = T'.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros Gamma e T T' Ht.
+  generalize dependent T'.
+  induction Ht; intros T' Ht';auto.
+  - inversion Ht';subst. rewrite H in H2. 
+    inversion H2. reflexivity.
+  - inversion Ht';subst. apply IHHt in H4.
+    rewrite H4;auto.
+  - inversion Ht';subst.
+    apply IHHt1 in H2.
+    apply IHHt2 in H4.
+    rewrite H4 in H2.
+    injection H2 as goal; auto.
+  - inversion Ht';subst;auto.
+  - inversion Ht';subst;auto.
+  - inversion Ht';subst;auto.
+Qed.
 (** [] *)
 
 (* ################################################################# *)
@@ -653,6 +701,17 @@ Proof.
     Coq theorems).
     You can write [Admitted] for the proofs. *)
 (* FILL IN HERE *)
+
+Theorem my_progress: forall t T,
+  empty |- t \in T ->
+      value t \/ exists t', t -->t'.
+Proof. Admitted.
+
+Theorem my_preservation : forall t t' T,
+  empty |- t \in T ->
+      t --> t' ->
+  empty |- t' \in T.
+Proof. Admitted.
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_progress_preservation_statement : option (nat*string) := None.
@@ -676,11 +735,11 @@ and the following typing rule:
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        false
       - Progress
-(* FILL IN HERE *)
+        false
       - Preservation
-(* FILL IN HERE *)
+        false
 *)
 
 (* Do not modify the following line: *)
@@ -704,11 +763,11 @@ Definition manual_grade_for_stlc_variation1 : option (nat*string) := None.
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        true
       - Progress
-(* FILL IN HERE *)
+        false
       - Preservation
-(* FILL IN HERE *)
+        false
 *)
 
 (* Do not modify the following line: *)
@@ -724,11 +783,11 @@ Definition manual_grade_for_stlc_variation2 : option (nat*string) := None.
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        true
       - Progress
-(* FILL IN HERE *)
+        false
       - Preservation
-(* FILL IN HERE *)
+        true
 *)
 
 (* Do not modify the following line: *)
@@ -749,11 +808,11 @@ Definition manual_grade_for_stlc_variation3 : option (nat*string) := None.
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        false
       - Progress
-(* FILL IN HERE *)
+        true
       - Preservation
-(* FILL IN HERE *)
+        false
 
     [] *)
 
@@ -773,11 +832,11 @@ Definition manual_grade_for_stlc_variation3 : option (nat*string) := None.
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        true
       - Progress
-(* FILL IN HERE *)
+        true
       - Preservation
-(* FILL IN HERE *)
+        false
 
     [] *)
 
@@ -797,11 +856,11 @@ Definition manual_grade_for_stlc_variation3 : option (nat*string) := None.
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        true
       - Progress
-(* FILL IN HERE *)
+        false
       - Preservation
-(* FILL IN HERE *)
+        true
 
     [] *)
 
@@ -819,11 +878,11 @@ Definition manual_grade_for_stlc_variation3 : option (nat*string) := None.
     false, give a counterexample.
 
       - Determinism of [step]
-(* FILL IN HERE *)
+        true
       - Progress
-(* FILL IN HERE *)
+        true
       - Preservation
-(* FILL IN HERE *)
+        false
 
     [] *)
 

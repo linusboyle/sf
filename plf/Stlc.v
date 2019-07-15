@@ -402,7 +402,33 @@ where "'[' x ':=' s ']' t" := (subst x s t).
 Inductive substi (s : tm) (x : string) : tm -> tm -> Prop :=
   | s_var1 :
       substi s x (var x) s
-  (* FILL IN HERE *)
+  | s_var2 :
+      forall y,
+      x <> y -> substi s x (var y) (var y)
+  | s_abs1 :
+      forall T t,
+      substi s x (abs x T t) (abs x T t)
+  | s_abs2 :
+      forall x' T t t',
+      x <> x'->
+      substi s x t t' ->
+      substi s x (abs x' T t) (abs x' T t')
+  | s_app :
+      forall t1 t2 t1' t2',
+      substi s x t1 t1' ->
+      substi s x t2 t2' ->
+      substi s x (app t1 t2) (app t1' t2')
+  | s_tru :
+      substi s x tru tru
+  | s_fls : 
+      substi s x fls fls
+  | s_test :
+      forall t1 t2 t3 t1' t2' t3',
+      substi s x t1 t1' ->
+      substi s x t2 t2' ->
+      substi s x t3 t3' ->
+      substi s x (test t1 t2 t3)
+                 (test t1' t2' t3')
 .
 
 Hint Constructors substi.
@@ -410,7 +436,61 @@ Hint Constructors substi.
 Theorem substi_correct : forall s x t t',
   [x:=s]t = t' <-> substi s x t t'.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  induction t;intros t';split;intros H.
+  - destruct (eqb_string x0 s0) eqn:E.
+    + simpl in H. rewrite E in H. 
+      rewrite <- H. apply eqb_string_true_iff in E.
+      subst. auto.
+    + simpl in H. rewrite E in H. 
+      rewrite <- H. apply eqb_string_false_iff in E.
+      subst. auto.
+  - inversion H;subst.
+    + simpl. rewrite <- eqb_string_refl.
+      reflexivity.
+    + simpl. apply eqb_string_false_iff in H1.
+      rewrite H1. auto.
+  - simpl in H. rewrite <- H.
+    apply s_app.
+    + apply IHt1. reflexivity.
+    + apply IHt2. reflexivity.
+  - inversion H;subst.
+    simpl.
+    apply IHt1 in H2.
+    apply IHt2 in H4.
+    rewrite H2.
+    rewrite H4.
+    reflexivity.
+  - simpl in H. 
+    destruct (eqb_string x0 s0) eqn:E.
+    + apply eqb_string_true_iff in E. rewrite E.
+      rewrite <- H. apply s_abs1.
+    + apply eqb_string_false_iff in E.
+      rewrite <-H.
+      apply s_abs2;try assumption.
+      apply IHt. reflexivity.
+  - inversion H;subst.
+    + simpl. rewrite <- eqb_string_refl.
+      reflexivity.
+    + simpl. apply eqb_string_false_iff in H4.
+      rewrite H4. apply IHt in H5.
+      rewrite H5. reflexivity.
+  - simpl in H. subst. auto.
+  - inversion H;subst. reflexivity.
+  - simpl in H. subst. auto.
+  - inversion H;subst. reflexivity.
+  - simpl in H. rewrite <- H.
+    apply s_test.
+    + apply IHt1; reflexivity.
+    + apply IHt2; reflexivity.
+    + apply IHt3; reflexivity.
+  - inversion H;subst.
+    simpl. 
+    apply IHt1 in H3.
+    apply IHt2 in H5.
+    apply IHt3 in H6.
+    subst.
+    reflexivity.
+Qed.
 (** [] *)
 
 (* ================================================================= *)
@@ -603,13 +683,20 @@ Lemma step_example5 :
        app (app idBBBB idBB) idB
   -->* idB.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  eapply multi_step. apply ST_App1.
+    apply ST_AppAbs. auto.
+    simpl.
+  eapply multi_step. apply ST_AppAbs.
+    auto. simpl.
+  apply multi_refl.
+Qed.
 
 Lemma step_example5_with_normalize :
        app (app idBBBB idBB) idB
   -->* idB.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  normalize.
+Qed.
 (** [] *)
 
 (* ################################################################# *)
@@ -742,7 +829,14 @@ Example typing_example_2_full :
           (app (var y) (app (var y) (var x))))) \in
     (Arrow Bool (Arrow (Arrow Bool Bool) Bool)).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  apply T_Abs.
+  apply T_Abs.
+  apply T_App with (Bool).
+  - apply T_Var. reflexivity.
+  - apply T_App with (Bool).
+    + apply T_Var; reflexivity.
+    + apply T_Var; reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars, standard (typing_example_3)  
@@ -764,7 +858,14 @@ Example typing_example_3 :
                (app (var y) (app (var x) (var z)))))) \in
       T.
 Proof with auto.
-  (* FILL IN HERE *) Admitted.
+  exists (Arrow (Arrow Bool Bool) (Arrow (Arrow Bool Bool ) (Arrow Bool Bool))).
+  apply T_Abs.
+  apply T_Abs.
+  apply T_Abs.
+  eapply T_App. apply T_Var. reflexivity.
+  eapply T_App. apply T_Var. reflexivity.
+  apply T_Var. reflexivity.
+Qed.
 (** [] *)
 
 (** We can also show that some terms are _not_ typable.  For example, 
@@ -801,6 +902,16 @@ Proof.
           empty |- \x:S. x x \in T).
 *)
 
+Lemma type_arrow_l : forall t1 t2,
+  t1 <> Arrow t1 t2.
+Proof.
+  induction t1;intros t2 H.
+  - inversion H.
+  - injection H as H1 H2. 
+    apply IHt1_1 in H1.
+    inversion H1.
+Qed.
+
 Example typing_nonexample_3 :
   ~ (exists S T,
         empty |-
@@ -808,7 +919,15 @@ Example typing_nonexample_3 :
              (app (var x) (var x))) \in
           T).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros [s [t H]].
+  inversion H;subst. clear H.
+  inversion H5;subst. clear H5.
+  inversion H4;subst. clear H4.
+  inversion H2;subst. clear H2.
+  rewrite H1 in H3.
+  inversion H3.
+  apply type_arrow_l in H0. assumption.
+Qed.
 (** [] *)
 
 End STLC.

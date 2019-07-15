@@ -13,7 +13,7 @@ R598:601 Coq.Init.Datatypes <> None constr
 R683:687 PLF.StlcPropTest Check <> mod
 R715:722 PLF.StlcProp <> <> lib
 R745:748 Coq.Init.Logic <> True ind
-R928:945 PLF.StlcProp STLCProp progress' prfax
+R928:945 PLF.StlcProp STLCProp progress' thm
 R962:973 PLF.Stlc STLC tm ind
 R981:992 PLF.Stlc STLC ty ind
 R1046:1050 Coq.Init.Logic <> ::type_scope:x_'->'_x not
@@ -32,7 +32,7 @@ R1045:1045 PLF.StlcPropTest <> T var
 R1043:1043 PLF.StlcPropTest <> t var
 R1018:1027 PLF.Maps <> empty def
 R1029:1040 PLF.Stlc STLC ty ind
-R928:945 PLF.StlcProp STLCProp progress' prfax
+R928:945 PLF.StlcProp STLCProp progress' thm
 R962:973 PLF.Stlc STLC tm ind
 R981:992 PLF.Stlc STLC ty ind
 R1046:1050 Coq.Init.Logic <> ::type_scope:x_'->'_x not
@@ -51,11 +51,11 @@ R1045:1045 PLF.StlcPropTest <> T var
 R1043:1043 PLF.StlcPropTest <> t var
 R1018:1027 PLF.Maps <> empty def
 R1029:1040 PLF.Stlc STLC ty ind
-R1170:1187 PLF.StlcProp STLCProp progress' prfax
+R1170:1187 PLF.StlcProp STLCProp progress' thm
 R1195:1198 Coq.Init.Logic <> True ind
 R1370:1398 PLF.StlcProp STLCProp manual_grade_for_afi def
 R1608:1655 PLF.StlcProp STLCProp manual_grade_for_subject_expansion_stlc def
-R1821:1841 PLF.StlcProp STLCProp unique_types prfax
+R1821:1841 PLF.StlcProp STLCProp unique_types thm
 R1862:1878 PLF.Stlc STLC context def
 R1886:1897 PLF.Stlc STLC tm ind
 R1908:1919 PLF.Stlc STLC ty ind
@@ -72,7 +72,7 @@ R1924:1941 PLF.Stlc STLC has_type ind
 R1951:1951 PLF.StlcPropTest <> T var
 R1949:1949 PLF.StlcPropTest <> e var
 R1943:1947 PLF.StlcPropTest <> Gamma var
-R1821:1841 PLF.StlcProp STLCProp unique_types prfax
+R1821:1841 PLF.StlcProp STLCProp unique_types thm
 R1862:1878 PLF.Stlc STLC context def
 R1886:1897 PLF.Stlc STLC tm ind
 R1908:1919 PLF.Stlc STLC ty ind
@@ -89,12 +89,12 @@ R1924:1941 PLF.Stlc STLC has_type ind
 R1951:1951 PLF.StlcPropTest <> T var
 R1949:1949 PLF.StlcPropTest <> e var
 R1943:1947 PLF.StlcPropTest <> Gamma var
-R2046:2066 PLF.StlcProp STLCProp unique_types prfax
+R2046:2066 PLF.StlcProp STLCProp unique_types thm
 R2074:2077 Coq.Init.Logic <> True ind
 R2305:2361 PLF.StlcProp STLCProp manual_grade_for_progress_preservation_statement def
 R2557:2597 PLF.StlcProp STLCProp manual_grade_for_stlc_variation1 def
 R2793:2833 PLF.StlcProp STLCProp manual_grade_for_stlc_variation2 def
 R3029:3069 PLF.StlcProp STLCProp manual_grade_for_stlc_variation3 def
 R3256:3292 PLF.StlcProp STLCArith manual_grade_for_stlc_arith def
-R3677:3697 PLF.StlcProp STLCProp unique_types prfax
-R4138:4155 PLF.StlcProp STLCProp progress' prfax
+R3677:3697 PLF.StlcProp STLCProp unique_types thm
+R4138:4155 PLF.StlcProp STLCProp progress' thm

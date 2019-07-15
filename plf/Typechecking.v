@@ -341,13 +341,32 @@ Fixpoint type_check (Gamma : context) (t : tm) : option ty :=
       | Nat => if eqb_ty T1 T2 then return T1 else fail
       | _ => fail
       end
-
-  (* Complete the following cases. *)
-  
-  (* sums *)
-  (* FILL IN HERE *)
+  | tinl T2 t1 =>
+      T1 <- type_check Gamma t1 ;;
+      return Sum T1 T2
+  | tinr T1 t2 =>
+      T2 <- type_check Gamma t2 ;;
+      return Sum T1 T2
+  | tcase t0 y1 t1 y2 t2 =>
+      T0 <- type_check Gamma t0 ;;
+      match T0 with
+      | Sum T1 T2 =>
+        T1' <- type_check (update Gamma y1 T1) t1 ;;
+        T2' <- type_check (update Gamma y2 T2) t2 ;;
+        if eqb_ty T1' T2' then return T1' else fail
+      | _ => fail
+      end
   (* lists (the [tlcase] is given for free) *)
-  (* FILL IN HERE *)
+  | tnil T =>
+      return List T
+  | tcons t1 t2 =>
+      T1 <- type_check Gamma t1 ;;
+      T2 <- type_check Gamma t2 ;;
+      match T2 with
+      | List T1' => if eqb_ty T1 T1' then return List T1
+                                     else fail
+      | _ => fail
+      end
   | tlcase t0 t1 x21 x22 t2 =>
       match type_check Gamma t0 with
       | Some (List T) =>
@@ -360,14 +379,38 @@ Fixpoint type_check (Gamma : context) (t : tm) : option ty :=
       | _ => None
       end
   (* unit *)
-  (* FILL IN HERE *)
+  | unit =>
+      return Unit
   (* pairs *)
-  (* FILL IN HERE *)
+  | pair t1 t2 =>
+      T1 <- type_check Gamma t1 ;;
+      T2 <- type_check Gamma t2 ;;
+      return Prod T1 T2
+  | fst t =>
+      T <- type_check Gamma t ;;
+      match T with
+      | Prod T1 T2 => return T1
+      | _ => fail
+      end
+  | snd t =>
+      T <- type_check Gamma t ;;
+      match T with
+      | Prod T1 T2 => return T2
+      | _ => fail
+      end
   (* let *)
-  (* FILL IN HERE *)
+  | tlet x t1 t2 =>
+      T1 <- type_check Gamma t1 ;;
+      T2 <- type_check (update Gamma x T1) t2 ;;
+      return T2
   (* fix *)
-  (* FILL IN HERE *)
-  | _ => None  (* ... and delete this line when you complete the exercise. *)
+  | tfix t =>
+      T <- type_check Gamma t ;;
+      match T with
+      | Arrow T1 T2 => if eqb_ty T1 T2 then return T1
+                                       else fail
+      | _ => fail
+      end
   end.
 
 (** Just for fun, we'll do the soundness proof with just a bit more

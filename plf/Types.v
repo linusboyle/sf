@@ -181,7 +181,17 @@ Hint Unfold stuck.
 Example some_term_is_stuck :
   exists t, stuck t.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  exists (scc tru).
+  split.
+  - intros [t H].
+    inversion H.
+    inversion H1.
+  - intros H.
+    inversion H.
+    + inversion H0.
+    + inversion H0.
+      inversion H2.
+Qed.
 (** [] *)
 
 (** However, although values and normal forms are _not_ the same in
@@ -193,7 +203,15 @@ Proof.
 Lemma value_is_nf : forall t,
   value t -> step_normal_form t.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  unfold step_normal_form.
+  intros t H [t' He].
+  inversion H.
+  - inversion H0;subst;inversion He.
+  - inversion H0;subst.
+    + inversion He.
+    + induction He;inversion H0.
+      auto.
+Qed.
 
 (** (Hint: You will reach a point in this proof where you need to
     use an induction to reason about a term that is known to be a
@@ -213,7 +231,54 @@ Proof.
 Theorem step_deterministic:
   deterministic step.
 Proof with eauto.
-  (* FILL IN HERE *) Admitted.
+  unfold deterministic.
+  intros x y1 y2 Hy1 Hy2.
+  generalize dependent y2.
+  induction Hy1;intros y2 Hy2.
+  - inversion Hy2;subst.
+    reflexivity.
+    inversion H3.
+  - inversion Hy2;subst.
+    reflexivity.
+    inversion H3.
+  - inversion Hy2;subst. 
+    + inversion Hy1.
+    + inversion Hy1.
+    + rewrite (IHHy1 t1'0 H3). reflexivity. 
+  - inversion Hy2;subst.
+    rewrite (IHHy1 t1'0 H0). reflexivity. 
+  - inversion Hy2;subst.
+    reflexivity.
+    inversion H0.
+  - assert (H1: value t1) by (right; assumption). apply value_is_nf in H1.
+    inversion Hy2;subst.
+    + reflexivity.
+    + inversion H2;subst.
+      exfalso;apply H1.
+      exists t1'0;assumption.
+  - inversion Hy2;subst.
+    + inversion Hy1.
+    + exfalso. assert (H1: value y2) by (right; assumption). apply value_is_nf in H1. 
+      apply H1.
+      inversion Hy1;subst.
+      exists t1'0;assumption.
+    + apply IHHy1 in H0.
+      rewrite H0;auto.
+  - inversion Hy2;subst.
+    + reflexivity.
+    + inversion H0.
+  - inversion Hy2;subst. reflexivity.
+    inversion H1;subst.
+    assert (H': value t1) by (right; assumption). apply value_is_nf in H'.
+    exfalso; eauto.
+  - inversion Hy2;subst.
+    + inversion Hy1.
+    + inversion Hy1;subst.
+      assert (H': value t0) by (right; assumption). apply value_is_nf in H'.
+      exfalso; eauto.
+    + apply IHHy1 in H0.
+      subst. auto.
+Qed.
 (** [] *)
 
 (* ================================================================= *)
@@ -321,7 +386,10 @@ Example scc_hastype_nat__hastype_nat : forall t,
   |- scc t \in Nat ->
   |- t \in Nat.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros t H.
+  inversion H;subst.
+  assumption.
+Qed.
 (** [] *)
 
 (* ----------------------------------------------------------------- *)
@@ -379,7 +447,28 @@ Proof with auto.
     + (* t1 can take a step *)
       inversion H as [t1' H1].
       exists (test t1' t2 t3)...
-  (* FILL IN HERE *) Admitted.
+  - inversion IHHT;clear IHHT.
+    + apply (nat_canonical t1 HT) in H.
+      left. right... 
+    + right.
+      destruct H as [t' H].
+      exists (scc t')...
+  - inversion IHHT;clear IHHT.
+    + apply (nat_canonical t1 HT) in H.
+      inversion H.
+      * right. exists zro...
+      * right. exists t...
+    + destruct H as [t' H].
+      right.
+      exists (prd t')...
+  - inversion IHHT;clear IHHT.
+    + apply (nat_canonical t1 HT) in H.
+      inversion H.
+      * right. exists tru...
+      * right. exists fls...
+    + destruct H as [t' H].
+      right. exists (iszro t')...
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (finish_progress_informal)  
@@ -448,7 +537,15 @@ Proof with auto.
       + (* ST_TestFls *) assumption.
       + (* ST_Test *) apply T_Test; try assumption.
         apply IHHT1; assumption.
-    (* FILL IN HERE *) Admitted.
+    - (* T_Scc *)
+      inversion HE;subst; clear HE.
+      apply T_Scc... 
+    - inversion HE;subst; clear HE.
+      + assumption.
+      + apply scc_hastype_nat__hastype_nat. assumption.
+      + auto.
+    - inversion HE;subst; clear HE;auto.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (finish_preservation_informal)  
@@ -499,7 +596,11 @@ Theorem preservation' : forall t t' T,
   t --> t' ->
   |- t' \in T.
 Proof with eauto.
-  (* FILL IN HERE *) Admitted.
+  intros t t' T Htype Hst.
+  generalize dependent T.
+  induction Hst; intros T Htype;inversion Htype; subst;auto.
+  - apply scc_hastype_nat__hastype_nat. assumption.
+Qed.
 (** [] *)
 
 (** The preservation theorem is often called _subject reduction_,
