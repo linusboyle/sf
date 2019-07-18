@@ -4,3 +4,8 @@
 *.mli
 *.cmo
 *.cmi
+*.html
+lf/common/
+plf/common/
+*.gif
+*.map
