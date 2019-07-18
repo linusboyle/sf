@@ -649,7 +649,8 @@ Proof with auto.
     + (* st = [] *) destruct l2...
     + (* st = t2 :: st2 *)
       destruct l2...
-      simpl; apply IHl1'...
+      simpl. apply IHl1'.
+      omega.
 Qed.
 
 (* ================================================================= *)
@@ -1154,7 +1155,11 @@ Definition store_well_typed (ST:store_ty) (st:store) :=
     different store typings [ST1] and [ST2] such that both
     [ST1 |- st] and [ST2 |- st]? *)
 
-(* FILL IN HERE *)
+(* 
+   store: {!(loc 1), !(loc 0)}
+   ST1: {Nat, Nat}
+   ST2: {Nat->Nat, Nat->Nat}
+*)
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_store_not_unique : option (nat*string) := None.
@@ -1396,7 +1401,7 @@ Proof with eauto.
     + (* x = y *)
       subst.
       rewrite update_eq in H3.
-      inversion H3; subst.
+      inversion H3; subst; clear H3.
       eapply context_invariance...
       intros x Hcontra.
       destruct (free_in_context _ _ _ _ _ Hcontra Hs)
@@ -1876,25 +1881,51 @@ Qed.
     sure it gives the correct result when applied to the argument
     [4].) *)
 
-Definition factorial : tm
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition factorial : tm :=
+  abs y Nat (
+    app (abs r (Ref (Arrow Nat Nat))
+            (tseq (assign (var r)
+              (abs x Nat (test0 (var x) (const 1) 
+                (mlt (var x) (app (deref (var r)) (prd (var x))))
+              ))) (app (deref (var r)) (var y))
+            )
+        ) (ref (abs x Nat (var x)))
+  ).
 
 Lemma factorial_type : empty; nil |- factorial \in (Arrow Nat Nat).
 Proof with eauto.
-  (* FILL IN HERE *) Admitted.
-
+  unfold factorial.
+  apply T_Abs.
+  eapply T_App.
+  apply T_Abs.
+  unfold tseq.
+  eapply T_App.
+  apply T_Abs.
+  eapply T_App.
+  apply T_Deref.
+  apply T_Var. reflexivity.
+  apply T_Var. reflexivity.
+  eapply T_Assign.
+  apply T_Var. reflexivity.
+  apply T_Abs.
+  apply T_If0...
+  apply T_Mult...
+  eapply T_App...
+  apply T_Deref...
+  apply T_Ref...
+Qed.
 (** If your definition is correct, you should be able to just
     uncomment the example below; the proof should be fully
     automatic using the [reduce] tactic. *)
 
-(* 
+ 
 Lemma factorial_4 : exists st,
   app factorial (const 4) / nil -->* const 24 / st.
 Proof.
   eexists. unfold factorial. reduce.
 Qed.
 
-    [] *)
+(* [] *)
 
 (* ################################################################# *)
 (** * Additional Exercises *)
