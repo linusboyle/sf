@@ -435,29 +435,29 @@ Definition manual_grade_for_arrow_sub_wrong : option (nat*string) := None.
     ([A], [B], and [C] here are base types like [Bool], [Nat], etc.)
 
     - [T->S <: T->S]
-
+    T
     - [Top->U <: S->Top]
-
+    T
     - [(C->C) -> (A*B)  <:  (C->C) -> (Top*B)]
-
+    T
     - [T->T->U <: S->S->V]
-
+    T
     - [(T->T)->U <: (S->S)->V]
-
+    F
     - [((T->S)->T)->U <: ((S->T)->S)->V]
-
+    F
     - [S*V <: T*U]
-
+    F
     [] *)
 
 (** **** Exercise: 2 stars, standard (subtype_order)  
 
     The following types happen to form a linear order with respect to subtyping:
-    - [Top]
-    - [Top -> Student]
-    - [Student -> Person]
-    - [Student -> Top]
-    - [Person -> Student]
+    - [Top] 1
+    - [Top -> Student] 2
+    - [Student -> Person] 4
+    - [Student -> Top] 5
+    - [Person -> Student] 3
 
 Write these types in order from the most specific to the most general.
 
@@ -478,27 +478,33 @@ Definition manual_grade_for_subtype_order : option (nat*string) := None.
       forall S T,
           S <: T  ->
           S->S   <:  T->T
+      F
 
       forall S,
            S <: A->A ->
            exists T,
               S = T->T  /\  T <: A
+      F
 
       forall S T1 T2,
            (S <: T1 -> T2) ->
            exists S1 S2,
               S = S1 -> S2  /\  T1 <: S1  /\  S2 <: T2 
+      T
 
       exists S,
            S <: S->S 
+      F
 
       exists S,
            S->S <: S  
+      T
 
       forall S T1 T2,
            S <: T1*T2 ->
            exists S1 S2,
               S = S1*S2  /\  S1 <: T1  /\  S2 <: T2  
+      T
 *)
 
 (* Do not modify the following line: *)
@@ -508,31 +514,31 @@ Definition manual_grade_for_subtype_instances_tf_2 : option (nat*string) := None
 (** **** Exercise: 1 star, standard (subtype_concepts_tf)  
 
     Which of the following statements are true, and which are false?
-    - There exists a type that is a supertype of every other type.
+    - There exists a type that is a supertype of every other type. T
 
-    - There exists a type that is a subtype of every other type.
+    - There exists a type that is a subtype of every other type. F
 
     - There exists a pair type that is a supertype of every other
-      pair type.
+      pair type. T
 
     - There exists a pair type that is a subtype of every other
-      pair type.
+      pair type. F
 
     - There exists an arrow type that is a supertype of every other
-      arrow type.
+      arrow type. F
 
     - There exists an arrow type that is a subtype of every other
-      arrow type.
+      arrow type. F
 
     - There is an infinite descending chain of distinct types in the
       subtype relation---that is, an infinite sequence of types
       [S0], [S1], etc., such that all the [Si]'s are different and
-      each [S(i+1)] is a subtype of [Si].
+      each [S(i+1)] is a subtype of [Si]. T
 
     - There is an infinite _ascending_ chain of distinct types in
       the subtype relation---that is, an infinite sequence of types
       [S0], [S1], etc., such that all the [Si]'s are different and
-      each [S(i+1)] is a supertype of [Si].
+      each [S(i+1)] is a supertype of [Si]. T
 
 *)
 
@@ -1008,7 +1014,14 @@ Lemma sub_inversion_Bool : forall U,
 Proof with auto.
   intros U Hs.
   remember Bool as V.
-  (* FILL IN HERE *) Admitted.
+  induction Hs;subst...
+  - assert (Bool = Bool) by reflexivity.
+    apply IHHs2 in H.
+    rewrite <- H.
+    apply (IHHs1 H).
+  - inversion HeqV.
+  - inversion HeqV.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, standard (sub_inversion_arrow)  *)
@@ -1020,7 +1033,17 @@ Proof with eauto.
   intros U V1 V2 Hs.
   remember (Arrow V1 V2) as V.
   generalize dependent V2. generalize dependent V1.
-  (* FILL IN HERE *) Admitted.
+  induction Hs;intros T' T'' Harr;subst...
+  - assert (Arrow T' T'' = Arrow T' T'') by reflexivity.
+    apply IHHs2 in H.
+    destruct H as [U1 [U2 [HUArr [Htu1 Htu2]]]].
+    apply IHHs1 in HUArr.
+    destruct HUArr as [U3 [U4 [HSArr [Htu3 Htu4]]]].
+    exists U3; exists U4.
+    repeat split...
+  - inversion Harr.
+  - inversion Harr;subst...
+Qed.
 (** [] *)
 
 (* ================================================================= *)
@@ -1057,7 +1080,15 @@ Lemma canonical_forms_of_arrow_types : forall Gamma s T1 T2,
   exists x S1 s2,
      s = abs x S1 s2.
 Proof with eauto.
-  (* FILL IN HERE *) Admitted.
+  intros. remember (Arrow T1 T2) as Ty. 
+  generalize dependent T1.
+  generalize dependent T2.
+  induction H; intros Ts1 Ts2 Hty; try solve_by_invert...
+  - subst.
+    destruct (sub_inversion_arrow _ _ _ H1) 
+      as [Tsub1 [Tsub2 [Hty [Hsub1 Hsub2]]]].
+    eauto.
+Qed.
 (** [] *)
 
 (** Similarly, the canonical forms of type [Bool] are the constants
@@ -1522,7 +1553,7 @@ Proof with eauto.
     inversion HE; subst...
     + (* ST_AppAbs *)
       destruct (abs_arrow _ _ _ _ _ HT1) as [HA1 HA2].
-      apply substitution_preserves_typing with T... 
+      apply substitution_preserves_typing with T...
 Qed.
 
 (* ================================================================= *)
