@@ -387,8 +387,16 @@ Lemma typing_example_2 :
             (rcons i2 (abs a B (var a))
              trnil))) \in
     (Arrow B B).
-Proof.
-  (* FILL IN HERE *) Admitted.
+Proof with eauto.
+  eapply T_App.
+  apply T_Abs...
+  eapply T_Proj.
+  apply T_Var.
+  unfold update, t_update.
+  rewrite <- eqb_string_refl. reflexivity.
+  auto. reflexivity.
+  apply T_RCons...
+Qed.
 
 Example typing_nonexample :
   ~ exists T,
@@ -396,8 +404,11 @@ Example typing_nonexample :
                                 RNil)) |-
                (rcons i1 (abs a B (var a)) (var a)) \in
                T.
-Proof.
-  (* FILL IN HERE *) Admitted.
+Proof with eauto.
+  intros [T Hcontra].
+  inversion Hcontra;subst.
+  solve_by_invert.
+Qed.
 
 Example typing_nonexample_2 : forall y,
   ~ exists T,
@@ -407,7 +418,13 @@ Example typing_nonexample_2 : forall y,
                    (rcons i1 (var y) (rcons i2 (var y) trnil))) \in
            T.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros y [T Hcontra].
+  inversion Hcontra;subst;clear Hcontra.
+  inversion H2;subst;clear H2.
+  inversion H4;subst;clear H4.
+  solve_by_invert.
+Qed.
+
 
 (* ================================================================= *)
 (** ** Properties of Typing *)
@@ -518,7 +535,7 @@ Proof with eauto.
      Proof: By induction on the given typing derivation. *)
   intros t T Ht.
   remember (@empty ty) as Gamma.
-  generalize dependent HeqGamma.
+  revert HeqGamma.
   induction Ht; intros HeqGamma; subst.
   - (* T_Var *)
     (* The final rule in the given typing derivation cannot be 
